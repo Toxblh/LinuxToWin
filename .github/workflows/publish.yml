@@ -22,7 +22,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --locked --release
+          args: --release --all-features
 
       - name: Packaging final binary
         shell: bash
