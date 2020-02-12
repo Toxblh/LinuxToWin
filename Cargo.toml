@@ -1,5 +1,5 @@
 [package]
-name = "linux_to_win"
+name = "linux-to-win"
 version = "0.1.0"
 authors = ["Anton Palgunov <toxblh@gmail.com>"]
 edition = "2018"
