@@ -1,7 +1,6 @@
 extern crate gio;
 extern crate gtk;
 
-// To import all needed traits.
 use gio::prelude::*;
 use gtk::prelude::*;
 use gtk::{ButtonsType, DialogFlags, MessageDialog, MessageType, Window};
@@ -25,17 +24,15 @@ fn new_window() {
     .expect("Application::new failed");
 
     app.connect_activate(|app| {
-        // We create the main window.
         let window = gtk::ApplicationWindow::new(app);
 
-        // Then we set its size and a title.
         window.set_default_size(400, 400);
         window.set_title("Restart Menu");
         window.set_position(gtk::WindowPosition::Center);
 
-        // Don't forget to make all widgets visible.
         window.show_all();
     });
+
     app.run(&env::args().collect::<Vec<_>>());
 }
 
