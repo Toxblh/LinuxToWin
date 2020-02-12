@@ -1,11 +1,10 @@
 
 name: Publishing releases
 
-on: [push]
-# on:
-#   push:
-#     tags:
-#       - 'v*.*.*'
+on:
+  push:
+    tags:
+      - 'v*.*.*'
 
 jobs:
   publish:
