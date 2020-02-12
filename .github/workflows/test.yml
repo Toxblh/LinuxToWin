@@ -7,10 +7,11 @@ jobs:
     name: Rust project
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-
-      - name: Gtk deps
+      - name: Install dependencies
         run: sudo apt update && sudo apt install -y libgtk-3-dev
+
+      - name: Checking out sources
+        uses: actions/checkout@master
 
       - uses: actions-rs/cargo@v1
         with:

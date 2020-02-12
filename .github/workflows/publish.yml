@@ -1,0 +1,42 @@
+
+name: Publishing releases
+
+on: [push]
+# on:
+#   push:
+#     tags:
+#       - 'v*.*.*'
+
+jobs:
+  publish:
+    name: Publishing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: sudo apt update && sudo apt install -y libgtk-3-dev
+
+      - name: Checking out sources
+        uses: actions/checkout@v1
+
+      - name: Running cargo build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --locked --release
+
+      - name: Packaging final binary
+        shell: bash
+        run: |
+          cd target/release
+          tar czvf linux-to-win.tar.gz linux-to-win
+          shasum -a 512 linux-to-win.tar.gz > linux-to-win.sha512
+
+      - name: Releasing assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            target/release/linux-to-win.tar.gz
+            target/release/linux-to-win.sha512
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
